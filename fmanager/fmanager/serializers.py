@@ -35,9 +35,15 @@ class GoalSerializer(ModelSerializer):
 
     def update(self, instance, validated_data):
         # TODO use amount set by user
+        card = Card.objects.filter(amount__gte=10)[0]
+        if not card:
+            raise serializers.ValidationError("You dont have enough money")
+        card.amount = card.amount - 10
+        card.save()
         instance.amountCollected += 10
         if instance.amountCollected >= instance.objective:
             instance.state = GoalState.ACHIEVED
+        instance.save()
         return instance
 
     def validate(self, data):
@@ -47,7 +53,6 @@ class GoalSerializer(ModelSerializer):
         if data['amountCollected'] >= data['objective']:
             raise serializers.ValidationError("Your goal is already completed")
         return data
-
 
 
 class TransactionSerializer(ModelSerializer):

@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-md-12">
 
-                <form action="{% url 'trans_new' %}" method="POST">
+                <form action="{% url 'goal_detail' pk=goal.pk %}" method="POST">
                     {% csrf_token %}
                     {% render_form serializer %}
                     <input type="submit" value="Save">

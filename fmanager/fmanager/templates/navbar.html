@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container"> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar12">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar12"> <a class="navbar-brand d-none d-md-block" href="{% url 'home_page' %}">
+          <i class="fa d-inline fa-lg fa-circle"></i>
+          <b> Financial Manager</b>
+        </a>
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"> <a class="nav-link" href="{% url 'cards_list' %}">Cards</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{% url 'trans_list' %}">Transactions</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{% url 'goals_list' %}">Goals</a> </li>
+        </ul>
+        <ul class="navbar-nav">
+          {% if user.is_authenticated %}
+          <li class="nav-item"> <a class="nav-link" href="#">Hello {{ user.get_username }}</a> </li>
+          {% else %}
+          <li class="nav-item"> <a class="nav-link" href="#">Log in</a> </li>
+          <li class="nav-item"> <a class="nav-link text-primary" href="#">Register</a> </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>

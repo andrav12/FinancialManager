@@ -10,20 +10,24 @@
 </head>
 
 <body>
-  {% include "navbar.html" %}
-  <div class="py-4">
-    <div class="container">
-      <div class="row">
-        {% for card in cards %}
-        <div class="col-md-5 p-3"> <img class="img-fluid d-block" src="https://www.directlink.coop/img/icons/138198-business-collection/svg/credit-card-1.svg" height="100px" width="300px"> {{ card.name }} {{ card.number }} {{ card.amount }}</div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
+{% include "navbar.html" %}
   <div class="py-5">
     <div class="container">
       <div class="row">
-        <div class="col-md-12"><a class="btn btn-primary" href="{% url 'card_new' %}">New Card</a></div>
+        <div class="col-md-12">
+          <ul class="list-group list-group-flush">
+            {% for goal in goals %}
+            <li class="list-group-item"><i class="fa fa-cloud text-primary mr-2"></i> <a href="{% url 'goal_detail' pk=goal.0.pk %}">Name: {{goal.0.name}} Description:{{goal.0.description}} Completed:{{ goal.1 }}%</a></li>
+        {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12"><a class="btn btn-primary" href="{% url 'goal_new' %}">New Goal</a></div>
       </div>
     </div>
   </div>

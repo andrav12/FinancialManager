@@ -10,20 +10,25 @@
 </head>
 
 <body>
-  {% include "navbar.html" %}
-  <div class="py-4">
+ {% include "navbar.html" %}
+  <div class="py-5">
     <div class="container">
       <div class="row">
-        {% for card in cards %}
-        <div class="col-md-5 p-3"> <img class="img-fluid d-block" src="https://www.directlink.coop/img/icons/138198-business-collection/svg/credit-card-1.svg" height="100px" width="300px"> {{ card.name }} {{ card.number }} {{ card.amount }}</div>
+        <div class="col-md-12">
+          <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action active"> Transactions<br></a>
+              {% for trans in transactions %}
+                <a href="{% url 'trans_detail' pk=trans.pk %}" class="list-group-item list-group-item-action">Name: {{trans.name}} Description:{{trans.description}} Amount:{{trans.amount}}</a>
         {% endfor %}
+            </div>
+        </div>
       </div>
     </div>
   </div>
   <div class="py-5">
     <div class="container">
       <div class="row">
-        <div class="col-md-12"><a class="btn btn-primary" href="{% url 'card_new' %}">New Card</a></div>
+        <div class="col-md-12"><a class="btn btn-primary" href="{% url 'trans_new' %}">New Transaction</a></div>
       </div>
     </div>
   </div>
